@@ -1,0 +1,6 @@
+[build]
+builder = "NIXPACKS
+
+[deploy]
+restarPolicyType = "ON_FAILURE"
+restarPolicyMaxRetires = 10
