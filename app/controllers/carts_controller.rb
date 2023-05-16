@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
     def index
-		@carts = Cart.user(current_user).order('created_at DESC')#Hay que modificarlo con user.id
+		@carts = Cart.user(current_user).order('created_at DESC')
 		@total = Cart.total(current_user);
 		render 'carts/index'
 	end
@@ -16,9 +16,6 @@ class CartsController < ApplicationController
 		@carts = Cart.new(carts_params)
 		respond_to do |format|
 			if @carts.save
-				post = Post.find(@carts.post_id)
-				stock = post.stock - @carts.quantity
-				post.update(stock: stock)
 				format.html { redirect_to show_product_cart_path(@carts), notice: "Los productos se agregaron al carrito con exito" }
 				format.json { render :show, status: :created, location:carts }
 			else
@@ -27,6 +24,7 @@ class CartsController < ApplicationController
 			end
 		end
 	end
+
 	def buy
 		Cart.buy(current_user)
 		respond_to do |format|
@@ -35,9 +33,6 @@ class CartsController < ApplicationController
 	end
 	def delete
 		@cart = Cart.find(params[:id])
-		post = Post.find(@cart.post_id)
-		stock = post.stock + @cart.quantity
-		post.update(stock: stock)
         Cart.eliminate(@cart.id)
 
        redirect_to carts_path, status: :see_other

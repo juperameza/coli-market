@@ -8,7 +8,7 @@
             <%= image_tag url_for(Post.find(carts.post_id).picture[0]), class:"image" %>
           </div>
           <div class="product-cart__details">
-            <h3 class=" product-cart__text product-cart__text--title"> <%= link_to truncate(Post.find(carts.post_id).title, length: 25), post_path(carts.id) %></h3>
+            <h3 class=" product-cart__text product-cart__text--title"> <%= link_to truncate(Post.find(carts.post_id).title, length: 25), post_path(Post.find(carts.post_id)) %></h3>
             <p class=" product-cart__text ">Cantidad: <%= carts.quantity%></p>
             <p class=" product-cart__text ">Precio: $<%= carts.price%></p>
           </div>

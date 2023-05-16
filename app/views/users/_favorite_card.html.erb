@@ -7,7 +7,7 @@
   <div class="favorite_card__info">
     <h2><%= link_to truncate(favorite.post.title, length: 30), post_path(favorite.post.id) %></h2>
     <p><%= truncate( favorite.post.description, length: 65) %></p>
-    <p class="favorite_card__info__seller">Vendido por: <%= link_to "#{favorite.user.first_name} #{favorite.user.last_name}", user_path(favorite.user.id) %></p>
+    <p class="favorite_card__info__seller">Vendido por: <%= link_to "#{favorite.post.user.first_name} #{favorite.post.user.last_name}", user_path(favorite.post.user.id) %></p>
 
     <div class="favorite_card__info__ranking">
       <div>

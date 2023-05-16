@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show]
-  before_action :authenticate_user!, only: [:profile, :favorites, :notifications, :messages, :purchases]
+  before_action :authenticate_user!, only: [:profile, :favorites, :notifications, :messages, :purchases, :sold]
   before_action :set_ranking, only: %i[ show ]
   def show
     @user = User.find(params[:id])

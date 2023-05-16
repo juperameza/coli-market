@@ -38,14 +38,15 @@ Rails.application.configure do
   config.active_storage.replace_on_assign_to_many = false
   # Don't care if the mailer can't send.
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: 'localhost',port: 3000, protocol: 'htpp'}
   config.action_mailer.smtp_settings = {
-    :from => 'donotreply@example.com',
-    :user_name => '72dec8794ea99c',
-    :password => 'c87b3eb68e274f',
-    :address => 'smtp.mailtrap.io',
-    :domain => 'smtp.mailtrap.io',
-    :port => '2525',
-    :authentication => :cram_md5
+    user_name:      Rails.application.credentials.email[:username],
+    password:       Rails.application.credentials.email[:password],
+    address:       'smtp.gmail.com',
+    port:          '587',
+    authentication: :plain,
+    enable_starttls_auto: true,
+    domain: 'gmail.com'
   }
   config.action_mailer.raise_delivery_errors = true
 
@@ -66,7 +67,6 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true

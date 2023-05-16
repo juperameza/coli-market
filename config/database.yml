@@ -81,7 +81,6 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
-  database: railwayapp_production
-  username: railwayapp
-  password: <%= ENV["RAILWAYAPP_DATABASE_PASSWORD"] %>
+  database: proyecto_final_k8_f22_t2_local_e_commerce_production
+  username: proyecto_final_k8_f22_t2_local_e_commerce
+  password: <%= ENV["PROYECTO_FINAL_K8_F22_T2_LOCAL_E_COMMERCE_DATABASE_PASSWORD"] %>

@@ -4,6 +4,6 @@ class Order < ApplicationRecord
 	has_one :user
 
 	def user
-		user = User.find(self.user_id)	
+		user = User.find(self.user_id)
 	end
 end
