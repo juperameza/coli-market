@@ -1,10 +1,11 @@
 class Post < ApplicationRecord
-  has_many :post_comments
+  has_many :post_comments, dependent: :destroy
   has_many :orders, through: :order_details
   has_many :order_details
-  has_many :carts
+  has_and_belongs_to_many :carts
+
   has_many :schedules
-  has_many :reservations 
+  has_many :reservations
   has_many_attached :picture
   belongs_to :user
   has_many :favorites
@@ -26,7 +27,7 @@ class Post < ApplicationRecord
     "Retiro en tienda": 1,
     "Punto medio": 2
   }
-  
+
   enum city: {
     "Armería": 0,
     "Colima": 1,

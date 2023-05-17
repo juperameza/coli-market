@@ -1,34 +1,31 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable
+
   has_many :orders
   has_many :posts, dependent: :destroy
+  has_many :favorites
+  has_many :user_comments
+  has_many :post_comments, dependent: :destroy
+  has_many :carts
 
   validates :first_name, presence: true
   validates :last_name, presence: true
 
   has_one_attached :avatar
   has_one_attached :cover_photo
-  has_many :favorites
-
-  has_many :user_comments
 
   paginates_per 10
 
   def published_products
-    self.posts.count
+    posts.count
   end
 
   def sold_products
-    @posts = self.posts
-    OrderDetail.where(post_id: @posts.ids).count
+    posts.joins(:order_details).count
   end
 
-  def bought_produtcs
-    @orders = self.orders
-    OrderDetail.where(order_id: @orders.ids).count
+  def bought_products
+    orders.joins(:order_details).count
   end
 end
-

@@ -1,41 +1,41 @@
 <div class="container-cart">
- <%if @total!=0%>
-  <div class="product-cart__wrapper">
-    <% @carts.each do |carts|%>
-      <%if carts.status%>
+  <% if @total != 0 %>
+    <div class="product-cart__wrapper">
+      <% @carts.select(&:status).each do |cart| %>
         <div class="product-cart">
           <div class="product-cart__image">
-            <%= image_tag url_for(Post.find(carts.post_id).picture[0]), class:"image" %>
+            <%= image_tag url_for(cart.post.picture[0]), class: "image" %>
           </div>
           <div class="product-cart__details">
-            <h3 class=" product-cart__text product-cart__text--title"> <%= link_to truncate(Post.find(carts.post_id).title, length: 25), post_path(Post.find(carts.post_id)) %></h3>
-            <p class=" product-cart__text ">Cantidad: <%= carts.quantity%></p>
-            <p class=" product-cart__text ">Precio: $<%= carts.price%></p>
+            <h3 class="product-cart__text product-cart__text--title">
+              <%= link_to truncate(cart.post.title, length: 25), post_path(cart.post) %>
+            </h3>
+            <p class="product-cart__text">Cantidad: <%= cart.quantity %></p>
+            <p class="product-cart__text">Precio: $<%= cart.price %></p>
           </div>
           <div class="product-cart__actions d-flex flex-wrap">
-            <h4>Importe total: $<%= carts.quantity*carts.price%></h4>
-            <%= button_to "Eliminar", delete_product_path(carts), class:"btn btn-danger w-100", method: :delete%>
+            <h4>Importe total: $<%= cart.quantity * cart.price %></h4>
+            <%= button_to "Eliminar", delete_product_path(cart), class: "btn btn-danger w-100", method: :delete %>
           </div>
         </div>
-      <%end%>
-    <% end %>
-  </div>
-  <% end %>
-  <%if @total==0%>
-  <div class="empty-cart">
-    <div class="empty-cart__image">
-      <%= image_tag url_for("empty-cart.png"), class:"image" %>
+      <% end %>
     </div>
-    <h1 class="empty-cart__text"> Tu carrito esta vacio </h1>
-    <li class="nav_section__item">
-      <%= button_to "Volver al incio", root_path, class: "btn btn-primary navbar-button" , method: :get%>
-    </li>
-  </div>
-  <%else%>
-  <div class="product-cart__payment">
-    <h6 class=" product-cart__text "> Total del carrito $<%=@total%></h6>
-    <%=button_to "Comprar carrito", buy_cart_path, method: :put, class: "btn btn-success px-5"%>
-  </div>
+  <% end %>
 
-  <%end%>
+  <% if @total == 0 %>
+    <div class="empty-cart">
+      <div class="empty-cart__image">
+        <%= image_tag("empty-cart.png", class: "image") %>
+      </div>
+      <h1 class="empty-cart__text">Tu carrito está vacío</h1>
+      <li class="nav_section__item">
+        <%= button_to "Volver al inicio", root_path, class: "btn btn-primary navbar-button", method: :get %>
+      </li>
+    </div>
+  <% else %>
+    <div class="product-cart__payment">
+      <h6 class="product-cart__text">Total del carrito $<%= @total %></h6>
+      <%= button_to "Comprar carrito", buy_cart_path, method: :put, class: "btn btn-success px-5" %>
+    </div>
+  <% end %>
 </div>

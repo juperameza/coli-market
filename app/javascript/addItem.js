@@ -12,11 +12,18 @@ window.loadFiles = function (event) {
 const showImages = (images) => {
   container.innerHTML = "";
   for (let i = 0; i < images.length; i++) {
-    let img = `<div class="form_post__container"><img class="form_post__picture output"/><div onclick="deleteImage(${i})" class="form_post__delete"><a class="form_post__delete__icon"><i class="fa-solid fa-trash"></i></a></div></div>`;
-    container.innerHTML += img;
-    img = document.getElementsByClassName("output");
-    img[i].src = URL.createObjectURL(images[i]);
-    img[i].style.display = "inline";
+    const div = document.createElement("div");
+    div.classList.add("form_post__container");
+    const img = document.createElement("img");
+    img.classList.add("form_post__picture", "output");
+    img.src = URL.createObjectURL(images[i]);
+    const deleteDiv = document.createElement("div");
+    deleteDiv.classList.add("form_post__delete");
+    deleteDiv.innerHTML = `<a class="form_post__delete__icon"><i class="fa-solid fa-trash"></i></a>`;
+    deleteDiv.addEventListener("click", () => deleteImage(i));
+    div.appendChild(img);
+    div.appendChild(deleteDiv);
+    container.appendChild(div);
   }
 };
 

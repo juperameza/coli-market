@@ -1,5 +1,5 @@
 class PostComment < ApplicationRecord
   belongs_to :post, dependent: :destroy
-  has_one :user
+  belongs_to :user
   validates :ranking, inclusion: { in: 0..5 }
 end

@@ -1,57 +1,88 @@
 ![BrightCoders Logo](img/logo-bc.png)
 
-# Instrucciones
+# Coli-market
 
-Este repositorio servirá para administrar toda la información relacionada con su proyecto final. Por favor, completen la información que a continuación se solicita y procuren mantenerlo actualizando concentrando toda la información relacionada con su proyecto en este repositorio, esto facilitará para los integrantes del equipo, mentores y cualquier persona interesada el acceso facil a toda la información relacionada con el mismo.
+Coli-market is a web application for Colima state artist to publish their products and be allowed to have a greater market that they may have.
 
-# Nombre
+## Prerequisites
 
-## Problematica que atiende
-El escaso apoyo a los vendedores locales.
+Before running the application, ensure that you have the following dependencies installed:
 
-## Propuesta de solución
-La facilidad de acercar a los vendedores  a los consumideros locales mediante una aplicacion web de e-commerce en la cual los vendedores podran publicar gratituamente sus productos para tener la oportunidad de crecer en el mercado.
+- Ruby (version 3.2.1)
+- Ruby on Rails (version 7.0.2)
+- PostgreSQL (version 14.7)
 
-## Plan General
-Considerando que el tiempo que tienen para desarrollar el proyecto es relativamente corto, es importante elaborar un plan general de trabajo que les permita dimensionar el máximo alcance que pudieran tener durante este tiempo. Se trata solamente de un plan que pudiera ir cambiando pero, servirá como referencia. No es necesario que sea muy detallado, por ejemplo:
+## Getting Started
 
-| Semana 1 | Semana 2 | Semana 3 | Semana 4 | Semana 5 | Semana 6 | Semana 7 | Semana 8 |
-|----------|----------|----------|----------|----------|----------|----------|----------|
-| Preparación inicial del proyecto y modelado de datos | Front end de todas las vistas | Registro y autenticación | CRUD Productos | Notificacion de producto por email | Sistema de mensajes entre vendedor y cliente | Implementacion de pago | Sistemas de puntuacion y categorias |
+To get started with the application, follow these steps:
 
-## Requerimientos funcionales
-- CRUD de publicaciones de producto
-- Que los usuarios puedan observar los productos en el inicio
-- Seguir a un creador que te agrade
-- Recibir notificaicion por email de productos de los creadores que sigas 
-- Recibir email con tu confirmacion de compra
-- Posibilidad de comprar productos
-- Validacion de credenciales del usuario
-- Recuperacion de contraseña
-- Registro en la pagina
-- Posibilidad de mensajeria con el vendedor del producto 
-- Sistema para puntuar los productos
-- Implementacion de sistema de filtrado
-- Sistema de busqueda de productos o vendedores
-## Requerimientos no funcionales
-### Interfaz
-- Diseño responsivo (Mobile, tablet y desktop)
-- Implementacion de bootstrap
-### Deploy
-  - Configuración de un servidor web (heroku o similar) para el deployment automático de actualizaciones de la app
-### Calidad de codigo
-   - Puntacion rubycritic
-   - Puntacion sandimeter
-  - Rubocop
-## Diseño del MVP
+1. Clone the repository:
+   git clone https://github.com/juperameza/coli-market.git
 
-Incluyan en [esta carpeta](/design) su propuesta de diseño
+2. Install the required gems:
+   bundle install
 
-## Recursos
+3. Set up the database:
+   rails db:create
+   rails db:migrate
 
-- [Minimum Viable Product](https://www.agilealliance.org/glossary/mvp/#q=~(infinite~false~filters~(tags~(~'mvp))~searchTerm~'~sort~false~sortDirection~'asc~page~1))
-- [Minimum Viable Product (MVP)](https://www.productplan.com/glossary/minimum-viable-product/)
-- [Design Thinking](https://www.interaction-design.org/literature/topics/design-thinking)
-- [El proceso de pensamiento de diseño](https://www.youtube.com/watch?v=_r0VX-aU_T8)
-- [Metodología Design Thinking. Ejemplos](https://www.youtube.com/watch?v=_ul3wfKss58) 
-- [Design Thinking ejemplo sencillo](https://www.youtube.com/watch?v=_H33tA2-j0s)
+4. Start the Rails server:
+   rails server
+
+5. Open your web browser and visit `http://localhost:3000` to access the application.
+
+## Features
+
+- User authentication: Users can sign up, log in, and log out.
+- Product management: Users can create, edit, and delete their own products.
+- Product listing: Users can view a list of all active products.
+- Product details: Users can view detailed information about a specific product.
+- Commenting: Users can leave comments on products.
+- Rating: Users can rate products on a scale of 1 to 5 stars.
+
+## File Structure
+
+The file structure of the application is organized as follows:
+app/
+├── controllers/ # Contains controllers for different application features
+├── models/ # Contains model classes for database entities
+├── views/ # Contains view templates for rendering HTML pages
+├── ...
+config/
+├── database.yml # Configuration file for database connection
+├── routes.rb # Defines application routes and URL mappings
+├── ...
+Gemfile # Lists application dependencies
+README.md # Documentation file (you're reading it!)
+...
+
+## Technologies Used
+
+- Ruby on Rails - Backend web framework
+- PostgreSQL - Database management system
+- HTML/CSS - Frontend markup and styling
+- JavaScript - Frontend interactivity and AJAX requests
+- Bootstrap - CSS framework for responsive design
+- Devise - User authentication library
+
+## Contributing
+
+If you'd like to contribute to MyApp, please follow these steps:
+
+1. Fork the repository on GitHub.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with descriptive commit messages.
+4. Push your changes to your forked repository.
+5. Submit a pull request to the original repository.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+## Acknowledgments
+
+- [Devise](https://github.com/heartcombo/devise) - User authentication library
+- [Bootstrap](https://getbootstrap.com) - CSS framework for responsive design
+- [Font Awesome](https://fontawesome.com) - Icons used in the application
+
+---

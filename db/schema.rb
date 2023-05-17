@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_01_025515) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_034832) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_01_025515) do
     t.bigint "user_id"
     t.index ["post_id"], name: "index_carts_on_post_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "carts_posts", id: false, force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "post_id", null: false
+    t.index ["cart_id", "post_id"], name: "index_carts_posts_on_cart_id_and_post_id"
+    t.index ["post_id", "cart_id"], name: "index_carts_posts_on_post_id_and_cart_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -161,13 +168,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_01_025515) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carts", "posts"
   add_foreign_key "carts", "users"
-  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "posts", on_delete: :cascade
   add_foreign_key "favorites", "users"
   add_foreign_key "order_details", "orders"
-  add_foreign_key "order_details", "posts"
+  add_foreign_key "order_details", "posts", on_delete: :cascade
   add_foreign_key "post_categories", "categories"
   add_foreign_key "post_categories", "posts"
-  add_foreign_key "post_comments", "posts"
+  add_foreign_key "post_comments", "posts", on_delete: :cascade
   add_foreign_key "posts", "statuses"
   add_foreign_key "user_comments", "users"
   add_foreign_key "users", "statuses"
