@@ -31,10 +31,8 @@ class CartsController < ApplicationController
 	  respond_to do |format|
 		if @carts.save
 		  format.html { redirect_to show_product_cart_path(@carts), notice: "Los productos se agregaron al carrito con exito" }
-		  format.json { render :show, status: :created, location:carts }
 		else
 		  format.html { redirect_to post_url(Post.find(@carts.post_id)), status: :unprocessable_entity, alert: @carts.errors[:quantity][0] }
-		  format.json { render json: @carts.errors, status: :unprocessable_entity }
 		end
 	  end
 	end
