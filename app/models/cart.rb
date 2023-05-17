@@ -2,7 +2,6 @@ class Cart < ApplicationRecord
   has_and_belongs_to_many :posts
   belongs_to :user
 
-
   before_validation :validate_stock
 
   scope :user, -> (user) { where(user_id: user.id) }

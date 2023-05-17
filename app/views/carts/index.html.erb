@@ -4,11 +4,11 @@
       <% @carts.select(&:status).each do |cart| %>
         <div class="product-cart">
           <div class="product-cart__image">
-            <%= image_tag url_for(cart.post.picture[0]), class: "image" %>
+            <%= image_tag url_for(Post.find(cart.post_id).picture[0]), class: "image" %>
           </div>
           <div class="product-cart__details">
             <h3 class="product-cart__text product-cart__text--title">
-              <%= link_to truncate(cart.post.title, length: 25), post_path(cart.post) %>
+              <%= link_to truncate(Post.find(cart.post_id).title, length: 25), post_path(Post.find(cart.post_id)) %>
             </h3>
             <p class="product-cart__text">Cantidad: <%= cart.quantity %></p>
             <p class="product-cart__text">Precio: $<%= cart.price %></p>

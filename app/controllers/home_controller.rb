@@ -9,15 +9,16 @@ class HomeController < ApplicationController
   end
 
   def results
-    unless params[:search] == ""
+    if params[:search].present?
       # Perform a search based on the provided search parameter
-      @posts = Post.search(params[:search])
-
-      # Paginate the search results using Kaminari gem
-      @posts = Kaminari.paginate_array(@posts).page(params[:page])
+      @posts = Post.search(params[:search]).select { |post| post.status_id == 1 }
     else
-      # If no search parameter is provided, retrieve all posts and paginate them
-      @posts = Post.all.page(params[:page])
+      # If no search parameter is provided, retrieve all active posts
+      @posts = Post.active
     end
+  
+    # Paginate the search results using Kaminari gem
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).page(params[:page]).per(3)
   end
+  
 end
