@@ -61,6 +61,7 @@
           <%end%>
         </li>
         <%end%>
+        <%if user_signed_in?%>
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle text-white"
@@ -83,6 +84,10 @@
             </li>
           </ul>
         </li>
+        <%else%>
+        <%= link_to "Iniciar sesion", new_user_session_path, class: "nav-link text-white" %>
+        <%end%>
+
       </ul>
     </div>
   </div>
