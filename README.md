@@ -31,6 +31,7 @@ To get started with the application, follow these steps:
 
 5. Open your web browser and visit `http://localhost:3000` to access the application.
 
+Alternative you can use [this link](https://coli-market.onrender.com/)
 ## Features
 
 - User authentication: Users can sign up, log in, and log out.
