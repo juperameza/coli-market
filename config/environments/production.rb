@@ -90,7 +90,7 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'localhost',port: 3000, protocol: 'htpp'}
+  config.action_mailer.default_url_options = { host: 'coli-market.onrender.com', protocol: 'htpps'}
   config.action_mailer.smtp_settings = {
     user_name:      Rails.application.credentials.email[:username],
     password:       Rails.application.credentials.email[:password],
